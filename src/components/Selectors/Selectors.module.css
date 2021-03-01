@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.formControl {
+    display: inline-block;
+    width: 300px;
+}
+
+.teamSelect {
+    width: 225px;
+}
+
+.playerSelect {
+    width: 225px;
+}
+.seasonSelect {
+    width: 100px;
+}
+

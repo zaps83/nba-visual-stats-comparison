@@ -1,0 +1,26 @@
+.container {
+    display: grid;
+    Grid-template-columns: 4fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.container:hover .stat {
+    background: rgba(255, 255, 0, .2)
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: solid black 1px;
+}
+
+.name {
+}
+
+.year {
+}
+
+.pts {
+    border-right: none;
+}
+

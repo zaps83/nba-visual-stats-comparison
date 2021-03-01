@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    Grid-template-columns: 4fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: solid;
+    border-right: solid 1px;
+    background: rgba(214, 214, 214, 0.993)
+
+}
+
+.name {
+}
+
+.year {
+}
+
+.pts {
+    border-right: none;
+}
+
