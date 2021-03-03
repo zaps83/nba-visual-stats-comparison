@@ -36,8 +36,8 @@ export const fetchPlayers = async (teamId) => {
     try {
         let data = await axios.request(options)
         data = data.data.api.players
-        .filter((player => player.startNba != 0 || player.yearsPro != 0))
-        .filter((player => player.leagues.standard && player.leagues.standard.active == 1))
+            .filter((player => player.startNba != 0 || player.yearsPro != 0))
+            .filter((player => player.leagues.standard && player.leagues.standard.active == 1))
         return data 
     } catch (error) {
         console.log('fetchPlayers()', error)
@@ -95,9 +95,8 @@ export const fetchStats = async (player) => {
                     id = arr[i].id
                     }
                 }
-                }
+            }
         }
-        console.log('id', id)
 
         // get yearsPro
         options.url = `${nbaUrl}/players/firstName/${player[0]}/lastName/${player[1]}`
@@ -106,7 +105,6 @@ export const fetchStats = async (player) => {
         let yearsProNames = careerStartData.data.api.players
         yearsProNames = yearsProNames.filter(obj => obj.firstName == player[0] && obj.lastName == player[1])
         let yearsPro = yearsProNames[0].yearsPro
-        console.log('yearPro', yearsPro)
 
         let year = 2020 - Number(yearsPro), careerStats= {stats: [], seasons: []}
         for (year; year < 2021; year++) {
@@ -118,11 +116,12 @@ export const fetchStats = async (player) => {
                 careerStats.seasons.push(year)
                 careerStats.stats[careerStats.stats.length - 1].name =  player.join(' ')
             }
-            console.log('year', year, 'careerStats', careerStats)
         } 
         careerStats.name = player.join(' ')
 
+        
         return {
+        
             careerStats,
             seasonsData: {
                 seasons: careerStats.seasons,
@@ -130,6 +129,7 @@ export const fetchStats = async (player) => {
                 name: player.join(' ')
             }
         }
+        
     } catch (error) {
         console.log('fetchStats()', error)
     }

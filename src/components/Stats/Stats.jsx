@@ -1,6 +1,10 @@
 import React from 'react'
 import styles from './Stats.module.css'
 import { Card, CardContent, Typography, Grid } from '@material-ui/core'
+import styled from 'styled-components'
+
+
+
 
 const Stats = (props) => {
 if (!props.stats) {
@@ -10,7 +14,7 @@ if (!props.stats) {
 let seasonStats = JSON.parse(JSON.stringify(props.stats))
 
 return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${styles.flashit}`}>
             <div className={`${styles.stat} ${styles.name}`}>{seasonStats.name}</div>
             <div className={styles.stat}>{seasonStats.year}</div>
             <div className={styles.stat}>{seasonStats.games_played}</div>

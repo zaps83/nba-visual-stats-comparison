@@ -1,6 +1,7 @@
 .container {
     display: grid;
     Grid-template-columns: 4fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 1250px;
 }
 
 .container:hover .stat {
@@ -24,3 +25,11 @@
     border-right: none;
 }
 
+/* .flashit {
+    animation: flash linear 1s infinite;
+}
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: .1; }
+    100% { opactiy: 1; }
+} */

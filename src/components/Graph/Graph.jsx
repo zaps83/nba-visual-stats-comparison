@@ -70,19 +70,39 @@ const Graph = (props) => {
                     datasets: [{
                         data: careerStats1.data,
                         label: careerStats1.name,
-                        borderColor: '#3333ff',
+                        borderColor: `${props.theme.blue}`,
                         fill: true,
                     }, {
                         data: careerStats2.data,
                         label: careerStats2.name,
-                        borderColor: 'red',
+                        borderColor: `${props.theme.red}`,
                         fill: true,
                     }, {
                         data: careerStats3.data,
                         label: careerStats3.name,
-                        borderColor: 'green',
+                        borderColor: `${props.theme.green}`,
                         fill: true,
                     }]
+                }}
+                options={{
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                color: `${props.theme.graphColor}`
+                            },
+                            ticks: {
+                                fontColor: `${props.theme.labelColor}`
+                            }
+                        }], 
+                        yAxes: [{
+                            gridLines: {
+                                color: `${props.theme.graphColor}`
+                            },
+                            ticks: {
+                                fontColor: `${props.theme.labelColor}`
+                            }
+                        }], 
+                    }
                 }}
             />)
             )
@@ -92,13 +112,13 @@ const Graph = (props) => {
                     labels: [careerStats1.name, careerStats2.name, careerStats3.name],
                     datasets: [{
                         label: '2020',
-                        backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
+                        backgroundColor: [`${props.theme.blue}`, `${props.theme.red}`, `${props.theme.green}`],
                         data: [careerStats1.stats[0][newStat], careerStats2.stats[0][newStat], careerStats3.stats[0][newStat]]
                     }]
                 }}
                 options={{
                     legend: { display: false },
-                    title: { display: true, text: `2020 Rookie Year Stats`}
+                    title: { display: true, text: `2020 Rookie Year Stats`},
                 }}
 
             />))
@@ -122,7 +142,9 @@ const Graph = (props) => {
                         borderColor: 'green',
                         fill: true,
                     }]
-                }}
+                }
+                
+            }
             />)
             )
         }
@@ -131,7 +153,7 @@ const Graph = (props) => {
     return (
         <div className={styles.graph}>
              <FormControl className={styles.formControl}>
-                <NativeSelect defaultValue='' onChange={(event) => handleStatChange(event.target.value)}>
+                <NativeSelect defaultValue='pts' onChange={(event) => handleStatChange(event.target.value)}>
                     <option value={'games_played'}>GP</option>
                     <option value={'min'}>MP</option>
                     <option value={'fgm'}>FG</option>
