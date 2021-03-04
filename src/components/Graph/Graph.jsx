@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import styles from './Graph.module.css'
 import { Line, Bar } from 'react-chartjs-2'
-import { NativeSelect, FormControl } from '@material-ui/core';
+import { FormControl, Select, MenuItem, InputLabel  } from '@material-ui/core';
+import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import styled from 'styled-components'
+
+
 
 const Graph = (props) => {
 
@@ -64,7 +68,7 @@ const Graph = (props) => {
             careerStats2 = extend(careerStats2, newStat)
             careerStats3 = extend(careerStats3, newStat)
 
-            return ((<Line
+            return ((<Line className={styles.lineChart} 
                 data={{
                     labels: careerStats1.seasons,
                     datasets: [{
@@ -82,7 +86,7 @@ const Graph = (props) => {
                         label: careerStats3.name,
                         borderColor: `${props.theme.green}`,
                         fill: true,
-                    }]
+                    }],
                 }}
                 options={{
                     scales: {
@@ -92,6 +96,11 @@ const Graph = (props) => {
                             },
                             ticks: {
                                 fontColor: `${props.theme.labelColor}`
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Season',
+                                fontColor: `${props.theme.secondaryColor}`
                             }
                         }], 
                         yAxes: [{
@@ -100,8 +109,18 @@ const Graph = (props) => {
                             },
                             ticks: {
                                 fontColor: `${props.theme.labelColor}`
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: `${newStat}`,
+                                fontColor: `${props.theme.secondaryColor}`
                             }
                         }], 
+                    },
+                    legend: {
+                        labels: {
+                            fontColor: `${props.theme.textColor}`
+                        }
                     }
                 }}
             />)
@@ -129,17 +148,17 @@ const Graph = (props) => {
                     datasets: [{
                         data: careerStats1.stats,
                         label: careerStats1.name,
-                        borderColor: '#3333ff',
+                        borderColor: `${props.theme.blue}`,
                         fill: true,
                     }, {
                         data: careerStats2.stats,
                         label: careerStats2.name,
-                        borderColor: 'red',
+                        borderColor: `${props.theme.red}`,
                         fill: true,
                     }, {
                         data: careerStats3.stats,
                         label: careerStats3.name,
-                        borderColor: 'green',
+                        borderColor: `${props.theme.green}`,
                         fill: true,
                     }]
                 }
@@ -149,34 +168,67 @@ const Graph = (props) => {
             )
         }
     }
+
+    const selectorsTheme = createMuiTheme({
+        palette: {
+          primary: {
+            main: `${props.theme.textColor}`
+          }
+        }
+      })
+
+      const useStyles = makeStyles((styles) => ({
+        InputLabel:  {
+          color: `${props.theme.textColor}`, 
+        },
+        Select: {
+          color: `${props.theme.textColor}`
+        }
+      }))
+    
+      const classes = useStyles()
+
+      const StatText = styled.div`
+        color: ${props.theme.textColor};
+        font-family: 'Poppins'
+      `
         
     return (
         <div className={styles.graph}>
-             <FormControl className={styles.formControl}>
-                <NativeSelect defaultValue='pts' onChange={(event) => handleStatChange(event.target.value)}>
-                    <option value={'games_played'}>GP</option>
-                    <option value={'min'}>MP</option>
-                    <option value={'fgm'}>FG</option>
-                    <option value={'fga'}>FGA</option>
-                    <option value={'fg_pct'}>FG%</option>
-                    <option value={'fg3m'}>3P</option>
-                    <option value={'fg3a'}>3PA</option>
-                    <option value={'fg3_pct'}>3P%</option>
-                    <option value={'ftm'}>FT</option>
-                    <option value={'fta'}>FTA</option>
-                    <option value={'ft_pct'}>FT%</option>
-                    <option value={'oreb'}>ORB</option>
-                    <option value={'dreb'}>DRB</option>
-                    <option value={'reb'}>TRB</option>
-                    <option value={'ast'}>AST</option>
-                    <option value={'stl'}>STL</option>
-                    <option value={'blk'}>BLK</option>
-                    <option value={'turnover'}>TOV</option>
-                    <option value={'pf'}>PF</option>
-                    <option value={'pts'}>PTS</option>
-                </NativeSelect>
-            </FormControl> 
-
+            <div className={styles.statPick}>
+                <StatText className={styles.statText} >GRAPH BY </StatText>
+                <ThemeProvider theme={selectorsTheme}>
+                    <FormControl className={styles.formControl}>
+                        <InputLabel className={classes.InputLabel} id='stat-select-label'></InputLabel>
+                        <Select 
+                            color='primary' 
+                            defaultValue='pts' 
+                            onChange={(event) => handleStatChange(event.target.value)}
+                            className={classes.Select}>
+                            <MenuItem labelId='stat-select-label' value={'games_played'}>GP</MenuItem>
+                            <MenuItem value={'min'}>MP</MenuItem>
+                            <MenuItem value={'fgm'}>FG</MenuItem>
+                            <MenuItem value={'fga'}>FGA</MenuItem>
+                            <MenuItem value={'fg_pct'}>FG%</MenuItem>
+                            <MenuItem value={'fg3m'}>3P</MenuItem>
+                            <MenuItem value={'fg3a'}>3PA</MenuItem>
+                            <MenuItem value={'fg3_pct'}>3P%</MenuItem>
+                            <MenuItem value={'ftm'}>FT</MenuItem>
+                            <MenuItem value={'fta'}>FTA</MenuItem>
+                            <MenuItem value={'ft_pct'}>FT%</MenuItem>
+                            <MenuItem value={'oreb'}>ORB</MenuItem>
+                            <MenuItem value={'dreb'}>DRB</MenuItem>
+                            <MenuItem value={'reb'}>TRB</MenuItem>
+                            <MenuItem value={'ast'}>AST</MenuItem>
+                            <MenuItem value={'stl'}>STL</MenuItem>
+                            <MenuItem value={'blk'}>BLK</MenuItem>
+                            <MenuItem value={'turnover'}>TOV</MenuItem>
+                            <MenuItem value={'pf'}>PF</MenuItem>
+                            <MenuItem value={'pts'}>PTS</MenuItem>
+                        </Select>
+                    </FormControl> 
+                </ThemeProvider>
+            </div>
             {LineChart}
         </div>
     )

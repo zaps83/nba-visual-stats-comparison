@@ -3,3 +3,21 @@
     height: auto;
 }
 
+.lineChart {
+    color: yellow;
+}
+
+.statPick {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.statText {
+
+    margin: 12.5px 10px 0;
+}
+
+.formControl {
+
+}

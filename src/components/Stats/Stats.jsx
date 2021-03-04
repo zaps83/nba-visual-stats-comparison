@@ -10,34 +10,48 @@ const Stats = (props) => {
 if (!props.stats) {
     return 'Data Unavailable'
 }
+console.log('props.stats', props.stats)
+
+let color
+if (props.slotSelect == 1) color = props.theme.blue
+if (props.slotSelect == 2) color = props.theme.red
+if (props.slotSelect == 3) color = props.theme.green
+
+const StatsContainer = styled.div`
+    background-color: ${props.stats.pts ? props.theme.statsBackground : color}
+`
+
+const Stat = styled.div`
+    border-right: ${props.stats.pts ? 'solid' : ''} black 1px;
+`
 
 let seasonStats = JSON.parse(JSON.stringify(props.stats))
 
 return (
-        <div className={`${styles.container} ${styles.flashit}`}>
-            <div className={`${styles.stat} ${styles.name}`}>{seasonStats.name}</div>
-            <div className={styles.stat}>{seasonStats.year}</div>
-            <div className={styles.stat}>{seasonStats.games_played}</div>
-            <div className={styles.stat}>{seasonStats.min}</div>
-            <div className={styles.stat}>{seasonStats.fgm}</div>
-            <div className={styles.stat}>{seasonStats.fga}</div>
-            <div className={styles.stat}>{seasonStats.fg_pct}</div>
-            <div className={styles.stat}>{seasonStats.fg3m}</div>
-            <div className={styles.stat}>{seasonStats.fg3a}</div>
-            <div className={styles.stat}>{seasonStats.fg3_pct}</div>
-            <div className={styles.stat}>{seasonStats.ftm}</div>
-            <div className={styles.stat}>{seasonStats.fta}</div>
-            <div className={styles.stat}>{seasonStats.ft_pct}</div>
-            <div className={styles.stat}>{seasonStats.oreb}</div>
-            <div className={styles.stat}>{seasonStats.dreb}</div>
-            <div className={styles.stat}>{seasonStats.reb}</div>
-            <div className={styles.stat}>{seasonStats.ast}</div>
-            <div className={styles.stat}>{seasonStats.stl}</div>
-            <div className={styles.stat}>{seasonStats.blk}</div>
-            <div className={styles.stat}>{seasonStats.turnover}</div>
-            <div className={styles.stat}>{seasonStats.pf}</div>
-            <div className={`${styles.stat} ${styles.pts}`}>{seasonStats.pts}</div>
-        </div>
+        <StatsContainer className={`${styles.container} ${styles.flashit}`}>
+            <Stat className={`${styles.stat} ${styles.name}`}>{seasonStats.name}</Stat>
+            <Stat className={styles.stat}>{seasonStats.year}</Stat>
+            <Stat className={styles.stat}>{seasonStats.games_played}</Stat>
+            <Stat className={styles.stat}>{seasonStats.min}</Stat>
+            <Stat className={styles.stat}>{seasonStats.fgm}</Stat>
+            <Stat className={styles.stat}>{seasonStats.fga}</Stat>
+            <Stat className={styles.stat}>{seasonStats.fg_pct}</Stat>
+            <Stat className={styles.stat}>{seasonStats.fg3m}</Stat>
+            <Stat className={styles.stat}>{seasonStats.fg3a}</Stat>
+            <Stat className={styles.stat}>{seasonStats.fg3_pct}</Stat>
+            <Stat className={styles.stat}>{seasonStats.ftm}</Stat>
+            <Stat className={styles.stat}>{seasonStats.fta}</Stat>
+            <Stat className={styles.stat}>{seasonStats.ft_pct}</Stat>
+            <Stat className={styles.stat}>{seasonStats.oreb}</Stat>
+            <Stat className={styles.stat}>{seasonStats.dreb}</Stat>
+            <Stat className={styles.stat}>{seasonStats.reb}</Stat>
+            <Stat className={styles.stat}>{seasonStats.ast}</Stat>
+            <Stat className={styles.stat}>{seasonStats.stl}</Stat>
+            <Stat className={styles.stat}>{seasonStats.blk}</Stat>
+            <Stat className={styles.stat}>{seasonStats.turnover}</Stat>
+            <Stat className={styles.stat}>{seasonStats.pf}</Stat>
+            <div className={`${styles.stat} ${styles.pts} ${styles.finalStat}`}>{seasonStats.pts}</div>
+        </StatsContainer>
     )
 
 }

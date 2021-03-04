@@ -3,12 +3,10 @@ body {
     margin: 0;
 }
 
-.darkMode {
+.header {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    margin: 0 30px 50px 0;
-    padding: 0;
+    justify-content: space-between;
+    margin: 15px 30px 15px 80px;
 }
 
 .mainPart {
@@ -19,5 +17,16 @@ body {
 }
 
 .selector {
-    margin: 3px;
+    margin: 3px 3px 30px;
+}
+
+.selectorsAndGraphWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectorsWrapper {
+    margin: 0 50px 0 0;
 }
