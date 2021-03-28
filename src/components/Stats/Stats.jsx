@@ -10,7 +10,6 @@ const Stats = (props) => {
 if (!props.stats) {
     return 'Data Unavailable'
 }
-console.log('props.stats', props.stats)
 
 let color
 if (props.slotSelect == 1) color = props.theme.blue

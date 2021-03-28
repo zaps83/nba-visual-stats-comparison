@@ -140,6 +140,7 @@ const App = () => {
 
   const handlePlayerChange = async (player, slotSelect) => {
     
+    
     if (slotSelect == 1) setLoadingColor(themes[theme].blue)
     if (slotSelect == 2) setLoadingColor(themes[theme].red)
     if (slotSelect == 3) setLoadingColor(themes[theme].green)
@@ -157,7 +158,8 @@ const App = () => {
 
     setLoading(true)
 
-    if (fetchedPlayerStats.careerStats.seasons.length == 0) {
+
+    if (!fetchedPlayerStats.careerStats) {
 
       if (slotSelect === 1) {
         setFetchedSeasonStats1(fetchedPlayerStats.careerStats.stats[fetchedPlayerStats.careerStats.stats.length - 1])
